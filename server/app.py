@@ -12,8 +12,6 @@ customers = ["bob", "bill", "john", "sarah"]
 app = Flask(__name__)
 
 # Task 2 & 3: Contract Route
-
-
 @app.route('/contract/<int:id>', methods=['GET'])
 def get_contract(id):
     contract = next((c for c in contracts if c['id'] == id), None)
@@ -22,14 +20,11 @@ def get_contract(id):
     return jsonify({"error": "Contract not found"}), 404
 
 # Task 2 & 3: Customer Route
-
-
 @app.route('/customer/<customer_name>', methods=['GET'])
 def get_customer(customer_name):
     if customer_name in customers:
         return '', 204
     return jsonify({"error": "Customer not found"}), 404
-
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
